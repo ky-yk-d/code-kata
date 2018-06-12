@@ -19,7 +19,7 @@ describe "Game" do
 
   it "scores 16 in a one-spare one" do
     @game.roll(5)
-    @game.roll(5)
+    @game.roll(5) # spare
     @game.roll(3)
     rollMany(17, 0)
     expect(@game.score).to eq 16
