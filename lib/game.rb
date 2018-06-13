@@ -13,12 +13,25 @@ class Game
 
   def score
     Integer score = 0
-    for i in 0..@rolls.count{ |num| !num.nil? }-1 do # ugly
-      print(i, 'is', @rolls[i].class)
-      puts()
-      score += @rolls[i]
+    Integer frameIndex = 0
+    for frame in 1..10 do
+      if @rolls[frameIndex] == 10
+        score += 10 + @rolls[frameIndex+1] + @rolls[frameIndex+2]
+        frameIndex += 1
+      elsif isSpare(frameIndex)
+        score += 10 + @rolls[frameIndex+2]
+        frameIndex += 2
+      else 
+        score += @rolls[frameIndex] + @rolls[frameIndex+1]
+        frameIndex += 2
+      end
     end
     return score
   end
+
+  private
+    def isSpare(frameIndex)
+      return @rolls[frameIndex] + @rolls[frameIndex+1] == 10
+    end
 
 end
