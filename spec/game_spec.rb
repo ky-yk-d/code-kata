@@ -25,11 +25,16 @@ describe "Game" do
   end
 
   it "scores 24 in a one-strike one" do
-    @game.roll(10)
+    rollStrike()
     @game.roll(3)
     @game.roll(4)
     rollMany(16, 0)
     expect(@game.score).to eq 24
+  end
+
+  it "scores 300 in a all-strike one" do
+    rollMany(12, 10)
+    expect(@game.score).to eq 300
   end
 
   private 
@@ -42,6 +47,10 @@ describe "Game" do
     def rollSpare()
       @game.roll(5)
       @game.roll(5)
+    end
+
+    def rollStrike()
+      @game.roll(10)
     end
     
 end
